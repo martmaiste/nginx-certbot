@@ -3,7 +3,7 @@
 sed -i -e "s/<UPLOAD_MAX_SIZE>/$UPLOAD_MAX_SIZE/g" /etc/nginx/nginx.conf \
        -e "s/<CRON_PERIOD>/$CRON_PERIOD/g" /etc/s6.d/cron/run
 
-if [ ! -e /etc/letsencrypt/live/localhost/fullchain.pem ]; then
+if [ ! -e /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then
   echo "Generating self-signed certificates..."
   cd /etc/letsencrypt/live/localhost
   generate-certs
