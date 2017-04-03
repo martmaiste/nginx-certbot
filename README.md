@@ -3,9 +3,14 @@
 ## Synopsis
 
 Nginx reverse proxy with Let's Encrypt support.
-At install time, a self-signed SSL certificate will be generated. This is required for the nginx to start with default https configuration.
 
-## Installation
+At the install time, a self-signed SSL certificate is generated. This is required for the nginx to start with default https configuration.
+
+Default nginx configuration redirects all http requests (except Let's Encrypt challenge) to https.
+
+https requests are proxied to upstream server on port 8080.
+
+## Installation and usage
 
 DOMAIN and EMAIL variables are optional and they are used for generating Let's Encrypt certificates.
 
@@ -18,16 +23,30 @@ docker run --name nginx -p 80:80 -p 443:443 \
        -t nginx
 ```
 
-Generating Let's Encrypt certificate
+Generate a new Let's Encrypt certificate
+
+Cron daemon tries to renew the certificate once every 7 days.
 
 ```
 docker exec -ti nginx letsencrypt-setup
 ```
 
-Renewing Let's Encrypt certificate manually
+Renew Let's Encrypt certificate manually
 
 ```
 docker exec -ti nginx letsencrypt-renew
+```
+
+Edit nginx.conf
+
+```
+docker exec -ti nginx vi /etc/nginx/nginx.conf
+```
+
+Reload nginx configuration
+
+```
+docker exec -ti nginx nginx -s reload
 ```
 
 ## Credits
