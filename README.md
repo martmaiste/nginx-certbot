@@ -12,7 +12,7 @@ https requests are proxied to upstream server on port 8080.
 
 ## Installation and usage
 
-DOMAIN and EMAIL variables are optional and they are used for generating Let's Encrypt certificates.
+DOMAIN and EMAIL variables are optional and they are used for generating Let's Encrypt certificate.
 
 ```
 git clone https://github.com/martmaiste/nginx-certbot-docker.git
