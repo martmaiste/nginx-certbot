@@ -17,7 +17,7 @@ DOMAIN and EMAIL variables are optional and they are used for generating Let's E
 ```
 git clone https://github.com/martmaiste/nginx-certbot-docker.git
 docker build -t nginx nginx-certbot-docker
-docker run --name nginx -p 80:80 -p 443:443 \
+docker run -d --name nginx -p 80:80 -p 443:443 \
        -e DOMAIN=localhost \
        -e EMAIL=hostmaster@localhost \
        -t nginx
