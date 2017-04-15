@@ -14,9 +14,19 @@ https requests are proxied to upstream server on port 8080.
 
 DOMAIN and EMAIL variables are optional and they are used for generating Let's Encrypt certificate.
 
+Either pull the image directly from Docker Hub:
+```
+docker pull martmaiste/nginx-certbot
+
+```
+Or build it locally:
 ```
 git clone https://github.com/martmaiste/nginx-certbot.git
 docker build -t nginx nginx-certbot
+```
+
+Run the container:
+```
 docker run -d --name nginx -p 80:80 -p 443:443 \
        -e DOMAIN=localhost \
        -e EMAIL=hostmaster@localhost \
