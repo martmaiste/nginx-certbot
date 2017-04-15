@@ -17,7 +17,6 @@ DOMAIN and EMAIL variables are optional and they are used for generating Let's E
 Either pull the image directly from Docker Hub:
 ```
 docker pull martmaiste/nginx-certbot
-
 ```
 Or build it locally:
 ```
