@@ -1,4 +1,4 @@
-## nginx reverse proxy with Let's Encrypt support
+## Nginx reverse proxy with Let's Encrypt support
 
 ## Synopsis
 
@@ -15,8 +15,8 @@ https requests are proxied to upstream server on port 8080.
 DOMAIN and EMAIL variables are optional and they are used for generating Let's Encrypt certificate.
 
 ```
-git clone https://github.com/martmaiste/nginx-certbot-docker.git
-docker build -t nginx nginx-certbot-docker
+git clone https://github.com/martmaiste/nginx-certbot.git
+docker build -t nginx nginx-certbot
 docker run -d --name nginx -p 80:80 -p 443:443 \
        -e DOMAIN=localhost \
        -e EMAIL=hostmaster@localhost \
