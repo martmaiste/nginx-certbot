@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.6
 
 ENV UID=0 GID=0 \
     UPLOAD_MAX_SIZE=10G \
@@ -6,8 +6,7 @@ ENV UID=0 GID=0 \
     EMAIL=hostmaster@localhost \
     DOMAIN=localhost
 
-RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
- && addgroup -S nginx \
+RUN addgroup -S nginx \
  && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
  && apk -U upgrade && apk add \
     bash \
