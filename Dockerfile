@@ -18,7 +18,8 @@ RUN addgroup -S nginx \
     ca-certificates \
     su-exec \
     tzdata \
- && mkdir -p /etc/letsencrypt/webrootauth \
+ && mkdir -p /etc/letsencrypt/webrootauth \ 
+ && mkdir -p /etc/letsencrypt/archive \
  && mkdir -p /etc/letsencrypt/live/localhost \
  && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg
 
