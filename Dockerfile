@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 ENV UID=0 GID=0 \
     UPLOAD_MAX_SIZE=10G \
@@ -18,9 +18,6 @@ RUN addgroup -S nginx \
     ca-certificates \
     su-exec \
     tzdata \
- && mkdir -p /etc/letsencrypt/webrootauth \ 
- && mkdir -p /etc/letsencrypt/archive \
- && mkdir -p /etc/letsencrypt/live/localhost \
  && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg
 
 COPY nginx.conf /etc/nginx/nginx.conf
