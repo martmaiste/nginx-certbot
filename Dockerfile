@@ -27,6 +27,7 @@ COPY generate-certs /usr/local/bin/generate-certs
 COPY letsencrypt-setup /usr/local/bin/letsencrypt-setup
 COPY letsencrypt-renew /usr/local/bin/letsencrypt-renew
 
+RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.org
 RUN chmod +x /usr/local/bin/* /etc/s6.d/*/* /etc/s6.d/.s6-svscan/*
 
 EXPOSE 80 443
