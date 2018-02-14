@@ -3,6 +3,11 @@
 sed -i -e "s/<UPLOAD_MAX_SIZE>/$UPLOAD_MAX_SIZE/g" /etc/nginx/nginx.conf \
        -e "s/<CRON_PERIOD>/$CRON_PERIOD/g" /etc/s6.d/cron/run
 
+if [ ! -d /etc/letsencrypt/live/localhost ]; then
+  echo "Creating directories for certificates..."
+  mkdir -p /etc/letsencrypt/webrootauth /etc/letsencrypt/archive /etc/letsencrypt/live/localhost
+fi
+
 if [ ! -e /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then
   echo "Generating self-signed certificates..."
   cd /etc/letsencrypt/live/localhost
