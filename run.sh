@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ ! -e /etc/nginx/nginx.conf ]; then
+  echo "nginx.conf not found, pulling from github"
+  wget https://github.com/martmaiste/nginx-certbot/raw/master/nginx.conf -O /etc/nginx/nginx.conf
+fi
+
 sed -i -e "s/<UPLOAD_MAX_SIZE>/$UPLOAD_MAX_SIZE/g" /etc/nginx/nginx.conf \
        -e "s/<CRON_PERIOD>/$CRON_PERIOD/g" /etc/s6.d/cron/run
 
