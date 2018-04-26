@@ -1,5 +1,8 @@
 #!/bin/sh
 
+${UPLOAD_MAX_SIZE:="10G"}
+${CRON_PERIOD:="7d"}
+
 if [ ! -e /etc/nginx/nginx.conf ]; then
   echo "nginx.conf not found, pulling from github"
   wget https://github.com/martmaiste/nginx-certbot/raw/master/nginx.conf -O /etc/nginx/nginx.conf
