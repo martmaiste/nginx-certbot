@@ -1,15 +1,20 @@
 #!/bin/sh
 
-${UPLOAD_MAX_SIZE:="10G"}
-${CRON_PERIOD:="7d"}
+UPLOAD_MAX_SIZE=${UPLOAD_MAX_SIZE:="10G"}
+CRON_PERIOD=${CRON_PERIOD:="7d"}
 
 if [ ! -e /etc/nginx/nginx.conf ]; then
   echo "nginx.conf not found, pulling from github"
   wget https://github.com/martmaiste/nginx-certbot/raw/master/nginx.conf -O /etc/nginx/nginx.conf
 fi
 
-sed -i -e "s/<UPLOAD_MAX_SIZE>/$UPLOAD_MAX_SIZE/g" /etc/nginx/nginx.conf \
-       -e "s/<CRON_PERIOD>/$CRON_PERIOD/g" /etc/s6.d/cron/run
+if grep --quiet UPLOAD_MAX_SIZE /etc/nginx/nginx.conf; then
+  sed -i -e "s/<UPLOAD_MAX_SIZE>/$UPLOAD_MAX_SIZE/g" /etc/nginx/nginx.conf
+fi
+
+if grep --quiet CRON_PERIOD /etc/s6.d/cron/run; then
+  sed -i -e "s/<CRON_PERIOD>/$CRON_PERIOD/g" /etc/s6.d/cron/run
+fi
 
 if [ ! -d /etc/letsencrypt/live/localhost ]; then
   echo "Creating directories for certificates..."
