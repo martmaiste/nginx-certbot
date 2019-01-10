@@ -8,11 +8,11 @@ if [ ! -e /etc/nginx/nginx.conf ]; then
   wget https://github.com/martmaiste/nginx-certbot/raw/master/nginx.conf -O /etc/nginx/nginx.conf
 fi
 
-if grep --quiet UPLOAD_MAX_SIZE /etc/nginx/nginx.conf; then
+if grep -q UPLOAD_MAX_SIZE /etc/nginx/nginx.conf; then
   sed -i -e "s/<UPLOAD_MAX_SIZE>/$UPLOAD_MAX_SIZE/g" /etc/nginx/nginx.conf
 fi
 
-if grep --quiet CRON_PERIOD /etc/s6.d/cron/run; then
+if grep -q CRON_PERIOD /etc/s6.d/cron/run; then
   sed -i -e "s/<CRON_PERIOD>/$CRON_PERIOD/g" /etc/s6.d/cron/run
 fi
 
