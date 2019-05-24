@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.9
 
 ENV UID=0 GID=0 \
     UPLOAD_MAX_SIZE=10G \
@@ -10,7 +10,7 @@ RUN addgroup -S nginx \
  && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
  && apk -U upgrade && apk add \
     bash \
-    libssl1.0 \
+    libssl1.1 \
     openssl \
     certbot \   
     nginx \
