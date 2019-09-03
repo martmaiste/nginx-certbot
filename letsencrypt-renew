@@ -5,7 +5,7 @@ if [ -z "$DOMAIN" ]; then
  echo "You need to have \$DOMAIN set"
 else
  if [ -f /etc/letsencrypt/live/${DOMAIN}/fullchain.pem ]; then
-  certbot renew --post-hook "nginx -s reload" --work-dir /etc/letsencrypt
+  certbot renew --post-hook "nginx -s reload" --work-dir /etc/letsencrypt --webroot -w /etc/letsencrypt/webrootauth
  else
   echo "There is no cert to renew"
  fi
