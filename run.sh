@@ -8,6 +8,11 @@ if [ ! -e /etc/nginx/nginx.conf ]; then
   wget https://github.com/martmaiste/nginx-certbot/raw/master/nginx.conf -O /etc/nginx/nginx.conf
 fi
 
+if [ ! -e /etc/nginx/mime.types ]; then
+  echo "mime.types not found, pulling from github"
+  wget https://raw.githubusercontent.com/nginx/nginx/master/conf/mime.types -O /etc/nginx/mime.types
+fi
+
 if grep -q UPLOAD_MAX_SIZE /etc/nginx/nginx.conf; then
   sed -i -e "s/<UPLOAD_MAX_SIZE>/$UPLOAD_MAX_SIZE/g" /etc/nginx/nginx.conf
 fi
