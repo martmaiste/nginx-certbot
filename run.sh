@@ -43,7 +43,7 @@ for dir in /etc/nginx /var/log /var/lib/nginx /tmp /etc/s6.d; do
   fi
 done
 
-for dir in /var/lib/nginx/tmp; do
+for dir in /var/lib/nginx/tmp /var/cache/nginx; do
   if $(find $dir ! -perm -g=rwx |egrep '.' -q); then
     echo "Updating permissions in $dir..."
     chmod -R g+rwx $dir
