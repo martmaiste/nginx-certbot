@@ -35,13 +35,23 @@ fi
 
 echo "Updating permissions..."
 for dir in /etc/nginx /var/log /var/lib/nginx /tmp /etc/s6.d; do
-  if $(find $dir ! -user $UID -o ! -group $GID|egrep '.' -q); then
+  if $(find $dir ! -user $UID -o ! -group $GID ! -perm -g=w |egrep '.' -q); then
     echo "Updating permissions in $dir..."
     chown -R $UID:$GID $dir
   else
     echo "Permissions in $dir are correct."
   fi
 done
+
+for dir in /var/lib/nginx/tmp; do
+  if $(find $dir ! -perm -g=rwx |egrep '.' -q); then
+    echo "Updating permissions in $dir..."
+    chmod -R g+rwx $dir
+  else
+    echo "Permissions in $dir are correct."
+  fi
+done
+
 echo "Done updating permissions."
 
 exec su-exec $UID:$GID /bin/s6-svscan /etc/s6.d
