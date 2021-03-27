@@ -34,12 +34,12 @@ if [ ! -e /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then
 fi
 
 echo "Updating permissions..."
-for dir in /etc/nginx /var/log /var/lib/nginx /tmp /etc/s6.d; do
+for dir in /etc/nginx /var/log /var/lib/nginx /tmp /etc/s6.d /var/cache/nginx; do
   if $(find $dir ! -user $UID -o ! -group $GID ! -perm -g=w |egrep '.' -q); then
-    echo "Updating permissions in $dir..."
+    echo "Updating owners in $dir..."
     chown -R $UID:$GID $dir
   else
-    echo "Permissions in $dir are correct."
+    echo "Owners in $dir are correct."
   fi
 done
 
