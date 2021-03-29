@@ -14,6 +14,7 @@ RUN addgroup -S nginx \
     openssl \
     certbot \   
     nginx \
+    nginx-mod-http-cache-purge \
     s6 \
     ca-certificates \
     su-exec \
