@@ -43,7 +43,7 @@ for dir in /etc/nginx /var/log /var/lib/nginx /tmp /etc/s6.d; do
   fi
 done
 
-for dir in /var/lib/nginx/tmp; do
+for dir in /var/lib/nginx; do
   if $(find $dir ! -user nginx -o ! -group nginx ! -perm -g=w |egrep '.' -q); then
     echo "Updating owners in $dir..."
     chown -R nginx:nginx $dir
