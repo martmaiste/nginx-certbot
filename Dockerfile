@@ -15,6 +15,7 @@ RUN addgroup -S nginx \
     certbot \   
     nginx \
     nginx-mod-http-cache-purge \
+    nginx-mod-http-headers-more \
     s6 \
     ca-certificates \
     su-exec \
