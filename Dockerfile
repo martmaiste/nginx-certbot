@@ -10,7 +10,6 @@ RUN addgroup -S nginx \
  && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
  && apk -U upgrade && apk add \
     bash \
-    libssl1.1 \
     openssl \
     certbot \   
     nginx \
@@ -20,7 +19,9 @@ RUN addgroup -S nginx \
     ca-certificates \
     su-exec \
     tzdata \
- && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg
+    logrotate \
+ && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg \
+ && echo "/usr/bin/certbot renew --quiet" > /etc/periodic/daily/certbot && chmod +x /etc/periodic/daily/certbot
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY run.sh /usr/local/bin/run.sh

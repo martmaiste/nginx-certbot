@@ -1,6 +1,3 @@
 #!/bin/sh
 
-while true; do
-  letsencrypt-renew
-  sleep <CRON_PERIOD>
-done
+/usr/sbin/crond -f -l 2
