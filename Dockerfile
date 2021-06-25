@@ -32,7 +32,7 @@ COPY periodic-certbot /etc/periodic/daily/certbot
 
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.org
 RUN chmod +x /usr/local/bin/* /etc/s6.d/*/* /etc/s6.d/.s6-svscan/* /etc/periodic/daily/*
-
+WORKDIR /etc/nginx
 EXPOSE 80 443
 
 LABEL description="Nginx proxy server with Let's Encrypt" \
