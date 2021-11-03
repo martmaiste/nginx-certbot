@@ -13,6 +13,7 @@ https requests are proxied to upstream server on port 8080.
 ## Installation and usage
 
 DOMAIN and EMAIL variables are optional and they are used for generating Let's Encrypt certificate.
+TZ variable is optional for setting local timezone, default is UTC.
 
 Either pull the image directly from Docker Hub:
 ```
@@ -29,6 +30,7 @@ Run the container:
 docker run -d --name nginx -p 80:80 -p 443:443 \
        -e DOMAIN=localhost \
        -e EMAIL=hostmaster@localhost \
+       -e TZ=Europe/Tallinn \
        --net=host \
        -t nginx
 ```
