@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/bin/certbot renew --quiet
+/usr/bin/certbot renew --quiet --post-hook "nginx -s reload"
