@@ -1,0 +1,10 @@
+/var/log/nginx/*.log {
+        compress
+        monthly
+        rotate 12
+        missingok
+        sharedscripts
+        postrotate
+                /usr/sbin/nginx -s reopen
+        endscript
+}
