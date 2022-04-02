@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.15
 
 ENV UID=0 GID=0 \
     UPLOAD_MAX_SIZE=10G \
@@ -28,8 +28,9 @@ ADD  run.sh letsencrypt-renew letsencrypt-setup generate-certs /usr/local/bin/
 ADD  periodic-certbot /etc/periodic/daily/certbot
 ADD  logrotate-nginx /etc/logrotate.d/nginx
 
-RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.org
-RUN chmod +x /usr/local/bin/* /etc/s6.d/*/* /etc/s6.d/.s6-svscan/* /etc/periodic/daily/*
+RUN rm -rf /etc/nginx/http.d \ 
+ && mkdir /etc/nginx/conf.d \
+ && chmod +x /usr/local/bin/* /etc/s6.d/*/* /etc/s6.d/.s6-svscan/* /etc/periodic/daily/*
 
 WORKDIR /etc/nginx
 
