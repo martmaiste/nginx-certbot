@@ -23,17 +23,16 @@ RUN addgroup -S nginx \
  && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY run.sh /usr/local/bin/run.sh
 COPY s6.d /etc/s6.d
-COPY generate-certs /usr/local/bin/generate-certs
-COPY letsencrypt-setup /usr/local/bin/letsencrypt-setup
-COPY letsencrypt-renew /usr/local/bin/letsencrypt-renew
-COPY periodic-certbot /etc/periodic/daily/certbot
-COPY logrotate-nginx /etc/logrotate.d/nginx
+ADD  run.sh letsencrypt-renew letsencrypt-setup generate-certs /usr/local/bin/
+ADD  periodic-certbot /etc/periodic/daily/certbot
+ADD  logrotate-nginx /etc/logrotate.d/nginx
 
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.org
 RUN chmod +x /usr/local/bin/* /etc/s6.d/*/* /etc/s6.d/.s6-svscan/* /etc/periodic/daily/*
+
 WORKDIR /etc/nginx
+
 EXPOSE 80 443
 
 LABEL description="Nginx proxy server with Let's Encrypt" \
