@@ -30,7 +30,8 @@ ADD  logrotate-nginx /etc/logrotate.d/nginx
 
 RUN rm -rf /etc/nginx/http.d \ 
  && mkdir /etc/nginx/conf.d \
- && chmod +x /usr/local/bin/* /etc/s6.d/*/* /etc/s6.d/.s6-svscan/* /etc/periodic/daily/*
+ && chmod +x,go-w /usr/local/bin/* /etc/s6.d/*/* /etc/s6.d/.s6-svscan/* /etc/periodic/daily/* \
+ && chmod go-w /etc/logrotate.d/*
 
 WORKDIR /etc/nginx
 
