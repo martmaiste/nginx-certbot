@@ -63,6 +63,6 @@ docker exec -ti nginx nginx -s reload
 
 ## Credits
 
-[Nextcloud 11 Dockerfile by Wonderfall](https://github.com/Wonderfall/dockerfiles/tree/master/nextcloud/11.0)
+[Nextcloud 11 Dockerfile by Wonderfall](https://github.com/Wonderfall/dockerfiles/tree/master/nextcloud/)
 
 [Self Signed SSL Certificate Generator by paulczar](https://github.com/paulczar/omgwtfssl)
