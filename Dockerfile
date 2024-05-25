@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM alpine:3.20
 
 ENV UID=0 GID=0 \
     UPLOAD_MAX_SIZE=10G \
